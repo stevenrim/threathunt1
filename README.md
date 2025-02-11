@@ -58,3 +58,34 @@ union DeviceFileEvents, DeviceProcessEvents, DeviceEvents
 ```
 3.3 Query Results:
 ![image](https://github.com/stevenrim/threathunt1/blob/main/step3screenshot.png?raw=true)
+
+## Step 4
+4.0 Known Information
+- N/A
+
+4.1 Objective - Enter the full path of one of the files that was created as a result of steghide.exe running.
+
+4.2 Used the initiating process file name found in step 3 to search for process command line. Found the full path of created file.
+```kql
+  DeviceProcessEvents
+    | where ProcessCommandLine contains "steghide.exe"
+    | project FileName, ProcessCommandLine
+```
+4.3 Query Results:
+![image](https://github.com/stevenrim/threathunt1/blob/main/step4screenshot.png)
+
+## Step 5
+5.0 Known Information
+- N/A
+
+5.1 Objective - Enter the full path of one of the files that was created as a result of steghide.exe running.
+
+5.2 Used the initiating process file name found in step 3 to search for process command line. Found the full path of created file.
+```kql
+  DeviceProcessEvents
+    | where ProcessCommandLine contains "steghide.exe"
+    | project FileName, ProcessCommandLine
+```
+5.3 Query Results:
+![image](https://github.com/stevenrim/threathunt1/blob/main/step4screenshot.png)
+
