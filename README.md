@@ -30,7 +30,7 @@ DeviceFileEvents
 2.0 Known Information
 - There are shared workstations in some areas of the campus that have a generic user profile established for guests.
 
-2.1 Objective - Identify the DeviceName of any other workstation Mister Montgomery may have used.
+2.1 Objective - Identify the DeviceName of any other workstation Bryce Montgomery may have used.
 
 2.2 Leveraged the hashes found in Step 1 to identify renamed files that were located on another workstation.
 ```kql
@@ -41,7 +41,7 @@ DeviceFileEvents
 ```
 
 2.3 Query Results:
-![image](https://github.com/stevenrim/threathunt1/blob/main/step2screenshot.png)
+![image](https://github.com/stevenrim/threathunt1/blob/main/step2screenshot.png?raw=true)
 
 ## Step 3
 3.0 Known Information
