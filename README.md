@@ -1,4 +1,4 @@
-(Disclaimer: This article presents a fictional threat hunting scenario created for educational and portfolio purposes. Any similarities to real individuals, organizations, or events are purely coincidental. The investigation techniques, queries, and methodologies demonstrated are based on real-world cybersecurity practices but are applied in a simulated environment. This content is intended to showcase threat hunting skills, analytical thinking, and investigative processes for professional development. It does not reflect any actual security incidents or breaches.)
+(Disclaimer: This article presents a fictional threat hunting scenario created for educational and portfolio purposes. Any similarities to real individuals, organizations, or events are purely coincidental. The investigation techniques, queries, and methodologies demonstrated are based on real-world cybersecurity practices but are applied in a simulated environment. This content is intended to showcase threat hunting skills, analytical thinking, and investigative processes for professional development. It does not reflect or promote any actual security incidents or breaches.)
 
 # Threat Hunt Report: Bryce Montgomery
 ## Platforms Used
@@ -47,14 +47,14 @@ DeviceFileEvents
 3.0 Known Information
 - N/A
 
-3.1 Objective - Identify the FileName of the process that interacted with the files in Step 1.
+3.1 Objective - Identify the FileName of the process that interacted with the renamed files on the lobby machine.
 
-3.2 
+3.2 Searched for all file names and previous file names and analyzed the action type and initiating process file name columns.
 ```kql
-DeviceFileEvents
-| where SHA256 == "ec727a15bf51e027b9a1bbf097cfa9d57e46aa159bfa37f68dca5e3c5df5af3d"
-| project Timestamp, DeviceName, InitiatingProcessAccountName, FileName, FolderPath, ActionType, InitiatingProcessFileName
+union DeviceFileEvents, DeviceProcessEvents, DeviceEvents
+| where FileName in ("Q1-2025-ResearchAndDevelopment.pdf", "Q2-2025-HumanTrials.pdf", "Q3-2025-AnimalTrials-SiberianTigers.pdf", "bryce-homework-fall-2024.pdf", "Amazon-Order-123456789-Invoice.pdf", "temp___2bbf98cf.pdf")
+| project Timestamp, DeviceName, InitiatingProcessAccountName, FileName, PreviousFileName, InitiatingProcessFileName, ActionType, SHA256
 | order by Timestamp asc
 ```
 3.3 Query Results:
-![image](https://github.com/stevenrim/threathunt1/blob/main/step2screenshot.png)
+![image](https://github.com/stevenrim/threathunt1/blob/main/step3screenshot.png?raw=true)
