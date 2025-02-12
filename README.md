@@ -24,7 +24,7 @@ DeviceFileEvents
 | order by Timestamp asc
 ```
 1.3 Query Results:
-![image](https://github.com/stevenrim/threathunt1/blob/main/step1screenshot.png?raw=true)
+![image](https://github.com/stevenrim/threathunt1/blob/main/step1screenshot.png)
 
 ## Step 2
 2.0 Known Information
@@ -41,7 +41,7 @@ DeviceFileEvents
 ```
 
 2.3 Query Results:
-![image](https://github.com/stevenrim/threathunt1/blob/main/step2screenshot.png?raw=true)
+![image](https://github.com/stevenrim/threathunt1/blob/main/step2screenshot.png)
 
 ## Step 3
 3.0 Known Information
@@ -57,7 +57,7 @@ union DeviceFileEvents, DeviceProcessEvents, DeviceEvents
 | order by Timestamp asc
 ```
 3.3 Query Results:
-![image](https://github.com/stevenrim/threathunt1/blob/main/step3screenshot.png?raw=true)
+![image](https://github.com/stevenrim/threathunt1/blob/main/step3screenshot.png)
 
 ## Step 4
 4.0 Known Information
