@@ -76,16 +76,44 @@ union DeviceFileEvents, DeviceProcessEvents, DeviceEvents
 
 ## Step 5
 5.0 Known Information
-- N/A
+- There was a Google Drive link that contained 3 photos of Bryce and his family in .bmp format with the same file names from step 4 query.
 
-5.1 Objective - Enter the full path of one of the files that was created as a result of steghide.exe running.
+5.1 Objective - What is the SHA256 thumbprint of the OTHER process that interacted with any of the stego images?
 
-5.2 Used the initiating process file name found in step 3 to search for process command line. Found the full path of created file.
+5.2 Searched initiating process command lines containing ".bmp" and filtered for it's SHA256 to find another process that interacted with the stego images and it's hash.
 ```kql
-  DeviceProcessEvents
-    | where ProcessCommandLine contains "steghide.exe"
-    | project FileName, ProcessCommandLine
+union DeviceProcessEvents, DeviceEvents, DeviceFileEvents, DeviceImageLoadEvents
+| where DeviceName == "lobby-fl2-ae5fc"
+| where InitiatingProcessCommandLine contains ".bmp" 
+| project Timestamp, DeviceName, InitiatingProcessFileName, FileName, InitiatingProcessCommandLine, ActionType, InitiatingProcessSHA256
+| order by Timestamp asc
 ```
 5.3 Query Results:
-![image](https://github.com/stevenrim/threathunt1/blob/main/step4screenshot.png)
+![image](https://github.com/stevenrim/threathunt1/blob/main/step5screenshot.png)
 
+## Step 6
+6.0 Known Information
+- N/A
+
+6.1 Objective - Enter the complete FolderPath where the zip file ultimately ended up on the lobby computer.
+
+6.2 The query results from step 5 showed that the stego files were zipped to secure_files.zip. Searched for the zipped file name and filtered its hash below.
+```kql
+union DeviceProcessEvents, DeviceEvents, DeviceFileEvents, DeviceImageLoadEvents
+| where DeviceName == "lobby-fl2-ae5fc"
+| where FileName contains "secure_files.zip"
+| project Timestamp, DeviceName, FileName, InitiatingProcessCommandLine, ActionType, SHA256
+| order by Timestamp asc
+```
+6.3 Query Results:
+![image](https://github.com/stevenrim/threathunt1/blob/main/step6screenshot.png)
+
+6.4 Used the hash for the zip file to search for other possible filenames and locations. 
+```kql
+union DeviceProcessEvents, DeviceEvents, DeviceFileEvents, DeviceImageLoadEvents
+| where SHA256 == @"07236346de27a608698b9e1ffef07b1987aa7fe8473aac171e66048ff322e2d6"
+| project Timestamp, DeviceName, FileName, InitiatingProcessCommandLine, ActionType, SHA256, FolderPath
+| order by Timestamp asc
+```
+6.5 Query Results:
+![image](https://github.com/stevenrim/threathunt1/blob/main/step6(2)screenshot.png)
