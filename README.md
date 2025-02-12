@@ -117,3 +117,13 @@ union DeviceProcessEvents, DeviceEvents, DeviceFileEvents, DeviceImageLoadEvents
 ```
 6.5 Query Results:
 ![image](https://github.com/stevenrim/threathunt1/blob/main/step6(2)screenshot.png)
+
+## Step 7 (Final)
+7.0 Known Information
+- It looks like Bryce stole the zipped file, but the username doesn’t really match and the computer isn’t technically his.  
+
+7.1 Objective - Consider all of the previous findings. Find a single (KQL) record in one of the previous tables that contains evidence that proves Bryce stole corporate information. Find the Timestamp (UTC) of this event.
+
+7.2 Noticed on the 
+6.3 Query Results:
+![image](https://github.com/stevenrim/threathunt1/blob/main/step6screenshot.png)
